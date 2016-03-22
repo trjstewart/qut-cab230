@@ -1,0 +1,45 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  background: #FFF;
+  margin: 0px 0px 50px 0px;
+}
+
+.container {
+  width: 1024px;
+  margin: auto;
+}
+
+header {
+  font-size: 24px;
+  background: #009ACD;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  border-bottom: thick solid #00688B;
+}
+
+header nav {
+  float: right;
+}
+
+header nav a {
+  color: #000000;
+  text-decoration: none;
+}
+
+footer {
+  color: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #35586C;
+  border-top: thick solid #36648B;
+}
