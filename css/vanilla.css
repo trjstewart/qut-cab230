@@ -43,3 +43,14 @@ footer {
   background-color: #35586C;
   border-top: thick solid #36648B;
 }
+
+/* results page */
+.results {
+  width: 1024px;
+  margin:auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 512px;
+}
