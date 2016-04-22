@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample JavaScript page</title>
+    <script type="text/javascript" src="./myscript.js"></script>
+  </head>
+  <body>
+    <script>
+      document.write("Page URL: " + window.location.href);
+      document.write("<br>");
+
+      var date = new Date();
+      document.write("Current Time: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+    </script>
+
+    <br><br><br><br>
+
+    <p onmouseover="ToggleBox('stupidBox')" onmouseout="ToggleBox('stupidBox')">Supprise!</p>
+    <div id="stupidBox" style="border: 1px solid; width: 100px; visibility: hidden;">This is a box...</div>
+
+    <br><br><br><br>
+
+    <table id="ThreeTable" border="1">
+      <tr>
+        <td>0</td>
+        <td>6</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>4</td>
+        <td>9</td>
+      </tr>
+    </table>
+    <button onclick="ThreeBeGone('ThreeTable');">No More 3</button>
+
+    <br><br><br><br>
+
+    <!-- Get users Lat Lon -->
+    <script>
+        var user = { latitude: 0, longitude: 0 };
+        var disney = { latitude: 28.418611, longitude: -81.581111 };
+        navigator.geolocation.getCurrentPosition(UserPosition);
+        function UserPosition(position) {
+          user.latitude = position.coords.latitude;
+          user.longitude = position.coords.longitude;
+        }
+
+        console.log('User: ' + JSON.stringify(user));
+        console.log("DisneyLand :" + JSON.stringify(disney));
+
+        Number.prototype.toRadians = function() { return this * Math.PI / 180; }
+
+        var R = 6371000; // metres
+        var φ1 = user.latitude.toRadians();
+        var φ2 = disney.latitude.toRadians();
+        var Δφ = (disney.latitude-user.latitude).toRadians();
+        var Δλ = (disney.longitude-user.longitude).toRadians();
+
+        var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        var d = R * c;
+
+        document.write("You are " + Math.floor(d) + "km away from Disney Land :'(")
+
+    </script>
+  </body>
+</html>
