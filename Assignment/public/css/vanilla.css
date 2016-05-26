@@ -54,3 +54,9 @@ table {
   border-collapse: collapse;
   width: 512px;
 }
+
+/* registration form */
+.registration {
+  width: 1024px;
+  margin:auto;
+}
