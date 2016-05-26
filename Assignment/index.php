@@ -1,7 +1,5 @@
 <?php
-require './lib/Database.php';
 require './lib/Search.php';
-require './lib/User.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +13,22 @@ require './lib/User.php';
 <body>
 <?php
 require './views/partials/header.html';
-// Code goes here...
+
+print_r((new Search)->byId(100));
+print '<hr>';
+
+print_r((new Search)->byName('ashgrove avenue'));
+print '<hr>';
+
+print_r((new Search)->bySuburb());
+print '<hr>';
+
+print_r((new Search)->byRating());
+print '<hr>';
+
+print_r((new Search)->byLocation());
+print '<hr>';
+
 require './views/partials/footer.html';
 ?>
 </body>
