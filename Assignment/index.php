@@ -43,7 +43,6 @@
 				<a href="index.php?page=home"><li class="home"><i class="fa fa-home" aria-hidden="true"></i>Home</li></a>
 				<a href="index.php?page=search"><li class="search"><i class="fa fa-search" aria-hidden="true"></i>Search</li></a>
 				<?php
-				session_start();
 				if(isset($_SESSION['name'])) {
 					echo "<a href=\"index.php?page=logout\"><li class=\"logout\"><i class=\"fa fa-ban\" aria-hidden=\"true\"></i>Logout</li></a>";
 				} else {

@@ -87,7 +87,7 @@ function getSearchResults() {
     search.suburb = document.getElementById('suburb').value;
     search.rating = document.getElementById('rating').value;
     search.location.radius = document.getElementById('location').value;
-
+    console.log(search);
     // Get the users current location and append it to the search parameters if there was a radius entered.
     navigator.geolocation.getCurrentPosition(function (position) {
         search.location.lat = position.coords.latitude;
@@ -104,6 +104,7 @@ function getSearchResults() {
             document.getElementById('results-body').innerHTML = '';
 
             // Results are back! Populate the results table!
+            console.log(xhttp.responseText);
             var results = JSON.parse(xhttp.responseText);
             for (var i = 0; i < results.length; i++) {
                 // Describe what I have done here... ********************
@@ -116,6 +117,9 @@ function getSearchResults() {
                     '</tr>'
                 ;
             }
+
+            // Render the results to a Google Map.
+            renderMap(results);
 
             // Results have finished loading now so we can hide the loading div and show the results.
             document.getElementById('loading').style.display = 'none';
@@ -141,7 +145,12 @@ function loadPark(park) {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var results = JSON.parse(xhttp.responseText);
+            // Render the Map
             renderMap(results);
+            // Display the Park Details.
+            document.getElementById('park-name').innerHTML = results[0].name;
+            document.getElementById('park-address').innerHTML = results[0].street + ', ' + results[0].suburb;
+            document.getElementById('park-rating').innerHTML = results[0].rating;
         }
     };
     xhttp.open("GET", "/api/parks/search?id=" + park, true);

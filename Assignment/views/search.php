@@ -35,6 +35,7 @@
 
 	<!-- Are there any results to display? Not to start with they're not! -->
 	<div id="results" class="row">
+		<div class="row"><div id="googleMap" class="col lg shadow"></div></div>
 		<div class="col">
 			<table>
 				<thead>

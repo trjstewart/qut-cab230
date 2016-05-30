@@ -36,24 +36,25 @@ if (isset($_GET['id'])) {
 // This SQL Query is relatively yucky but it's efficient to do a single query with every search paramater in it so that's how we're doing it!
 $sql = "
 SELECT *,
-	(6371 * acos(cos(radians(-27.4710)) * cos(radians(latitude)) * cos(radians(longitude) - radians(153.0234)) + sin(radians(-27.4710)) * sin(radians(latitude)))) AS distance,
+	(6371 * acos(cos(radians(:lat1)) * cos(radians(latitude)) * cos(radians(longitude) - radians(:lon)) + sin(radians(:lat2)) * sin(radians(latitude)))) AS distance,
 	COALESCE((SELECT round(avg(reviews.rating),0) FROM reviews WHERE park = parks.id), 0) as rating
 FROM parks
 WHERE name LIKE concat('%', :name, '%') AND suburb LIKE concat('%', :suburb, '%')
-HAVING distance < 25000 AND rating >= :rating
+HAVING distance < :radius AND rating >= :rating
 ORDER BY distance
 LIMIT 0, 100
 ";
 $stmt = $db->dbh->prepare($sql);
 
 // Bind the parameters for our query.
+$radius = ($_GET['radius'] > 0) ? $_GET['radius'] : 9999999;
 $stmt->bindParam(':name', $_GET['name'], PDO::PARAM_STR);
 $stmt->bindParam(':suburb', $_GET['suburb'], PDO::PARAM_STR);
 $stmt->bindParam(':rating', $_GET['rating'], PDO::PARAM_INT);
-//$stmt->bindParam(':radius', $_GET['radius'], PDO::PARAM_INT);
-//$stmt->bindParam(':lat1', $_GET['lat'], PDO::PARAM_INT);
-//$stmt->bindParam(':lat2', $_GET['lat'], PDO::PARAM_INT);
-//$stmt->bindParam(':lon', $_GET['lon'], PDO::PARAM_INT);
+$stmt->bindParam(':radius', $radius, PDO::PARAM_INT);
+$stmt->bindParam(':lat1', $_GET['lat'], PDO::PARAM_INT);
+$stmt->bindParam(':lat2', $_GET['lat'], PDO::PARAM_INT);
+$stmt->bindParam(':lon', $_GET['lon'], PDO::PARAM_INT);
 $stmt->execute();
 
 // Fetch the result of the query as an Array.

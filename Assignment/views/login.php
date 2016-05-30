@@ -13,7 +13,7 @@
                 $_SESSION['name'] = User::getName($email);
                 $_SESSION['id'] = User::getId($email);
                 //assign session variables
-                header('Location: index.php?page=home');
+                //header('Location: index.php?page=home');
                    //welcome the user
             } else {
                 echo '<script type="text/javascript">'
