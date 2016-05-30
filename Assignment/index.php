@@ -42,7 +42,14 @@
 			<ul>
 				<a href="index.php?page=home"><li class="home"><i class="fa fa-home" aria-hidden="true"></i>Home</li></a>
 				<a href="index.php?page=search"><li class="search"><i class="fa fa-search" aria-hidden="true"></i>Search</li></a>
-				<a href="index.php?page=auth"><li class="login"><i class="fa fa-lock" aria-hidden="true"></i>Register | Login</li></a>
+				<?php
+				session_start();
+				if(isset($_SESSION['name'])) {
+					echo "<a href=\"index.php?page=logout\"><li class=\"logout\"><i class=\"fa fa-ban\" aria-hidden=\"true\"></i>Logout</li></a>";
+				} else {
+					echo "<a ><li class=\"login\"><i class=\"fa fa-lock\" aria-hidden=\"true\"></i><a href=\"index.php?page=register\"> Register</a> | <a href=\"index.php?page=login\">Login</a></li></a>";
+				}
+				?>
 			</ul>
 		</div>
 	</div>
@@ -53,8 +60,10 @@
 		<?php
 		if($_GET['page'] == 'home') include './views/home.php';
 		else if($_GET['page'] == 'search') include './views/search.php';
-		else if($_GET['page'] == 'auth') include './views/auth.php';
+		else if($_GET['page'] == 'register') include './views/register.php';
+		else if($_GET['page'] == 'login') include './views/login.php';
 		else if($_GET['page'] == 'park') include './views/park.php';
+		else if($_GET['page'] == 'logout') include './views/logout.php';
 		else include './views/home.php'
 		?>
 

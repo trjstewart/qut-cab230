@@ -1,69 +1,50 @@
-<?php
-require '../lib/Database.php';
-require '../lib/User.php';
-require '../lib/Search.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Park Finder</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/vanilla.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="../public/js/vanilla.js"></script>
-
+    <?php
+    if (isset($_POST['submit'])) { //if form submitted
+        require './api/Database.php';
+        require './api/User.php';
+        $email = $_POST['email'];     //assign values to variables
+        $password = $_POST['pass1'];
+        if (User::checkExists($email) == True) {     //if email exists
+            if (User::verifyPassword($email, $password) == True) { //check if password is correct
+                //session_start(); //start session
+                $_SESSION ['email'] = $email;
+                
+                $_SESSION['name'] = User::getName($email);
+                $_SESSION['id'] = User::getId($email);
+                //assign session variables
+                header('Location: index.php?page=home');
+                   //welcome the user
+            } else {
+                echo '<script type="text/javascript">'
+                , 'alert("Incorrect password");'   //tell the user why it doesn't work
+                , '</script>';
+            }
+        } else {
+            echo '<script type="text/javascript">'
+            , 'alert("User doesn\'t exist");'   //tell the user why it doesn't work
+            , '</script>';
+        }
+    }
+    ?>
 </head>
 <body>
-<!--header-->
-<?php
-require 'partials/header.html';
-?>
-<br><br><br>
-
-<!--form-->
-<div class="registration">
-    <div class="regForm">
-        <form method="post">
-            <br>
-            <h2>User Login</h2>
-            <div class="formText">
-                Email<br>
-                <input type="email" name="email" id="email" required><br><br>
-
-                Password <br>
-                <input type="password" name="pass1" id="pass1" required><br>
-                <br>
-            </div>
-
-            <input type="submit" class="btn" name="submit" value="Login" id="submit">
-            <br><br>
-            <span id="errorMessage" class="errorMessage"></span>
 
 
-        </form>
-    </div>
+<div id="search-container" class="col lg shadow">
+    <form name="regForm" class="auth" method="post" id="search">
+        <h3><b>User login</b> </h3>
+
+        Email <br>
+        <input type="email" name="email" id="email" required><span id="emailMessage" class="ErrorMessage"> <br><br>
+
+        Password <br>
+        <input type="password" name="pass1" id="pass1" required><span id="passMessage" class="ErrorMessage"></span> <br><br>
+
+        <br><br><br>
+        <button type="submit" style="float: left" name="submit" id="submit" onsubmit="return checkForm()">Login</button> <span id="otherMessage" class="ErrorMessage"></span>
+        <br><br>
+    </form>
 </div>
-<?php
-require 'partials/footer.html';
-?>
-<?php
-if (isset($_POST['submit'])) { //if form submitted
-    $email = $_POST['email'];     //assign values to variables
-    $password = $_POST['pass1'];
-    if (User::checkExists($email) == True) {     //if email exists
-        if (User::verifyPassword($email, $password) == True) { //check if password is correct
-            session_start(); //start session_start
-            $_SESSION ['email'] = $email;
-            //session ID maybe?             //assign session variables
-            print("Welcome " . $_SESSION['email'] . "!");    //welcome the user
-        } else {
-            print("Invalid Email/Password");
-        }
-    } else {
-        print("User doesn't exist");
-    }
-}
-?>
 </body>
-</html>
+

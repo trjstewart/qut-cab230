@@ -1,19 +1,53 @@
-function checkPass()
+/*-------------------------------------------------------*/
+/*-----------------| Reg Page Functions |----------------*/
+/*-------------------------------------------------------*/
+//Function      : checkPass()
+//Description   : check that the user has successfully confirmed their password
+function validateDate(date)
 {
-    //Store the password field objects into variables ...
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    var message = document.getElementById('confirmMessage');
-    //Compare the passwords
-    if(pass1.value == pass2.value){
-        //The passwords match.
-        message.innerHTML = "";
-        submit.disabled = false;
-    }else{
-        //The passwords do not match.
+    var error = document.getElementById('dobMessage');
+
+    var validformat=/^\d{2}\/\d{2}\/\d{4}$/; //Basic check for format validity
+    var returnval=false;
+    if (!validformat.test(date.value)) {
+        error.innerHTML = "Invalid format. Please correct to (DD/MM/YYYY)";
         submit.disabled = true;
-        message.innerHTML = "Passwords Do Not Match!"
+
+    } else{ //Detailed check for valid date ranges
+        var dayfield=date.value.split("/")[0];
+        var monthfield=date.value.split("/")[1];
+        var yearfield=date.value.split("/")[2];
+        var dayobj = new Date(yearfield, monthfield-1, dayfield);
+        if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))  {
+            submit.disabled = true;
+            error.innerHTML = "Invalid Day, Month, or Year range detected";
+        }
+        else {
+            error.innerHTML = "";
+            submit.disabled = false;
+            returnval=true
+        }
+
     }
+    if (returnval==false) date.select();
+    return returnval
+}
+
+
+//Function      : checkForm()
+//Description   : helper function to check the form before submitting.
+function checkForm() {
+    var date = document.getElementById('dob');
+    if(validateDate(date)) {
+        return false;
+    }
+    if(checkPass()) {
+        return false;
+    }
+
+
+    return true;
+
 }
 
 /*-------------------------------------------------------*/
