@@ -5,6 +5,7 @@
 	<title>Park Finder</title>
 	<link rel="stylesheet" type="text/css" href="./public/css/vanilla.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<script src="./public/js/vanilla.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script>
 		function initialize() {
@@ -39,54 +40,25 @@
 		<div class="logo"><img src="public/img/bird_logo.png"/></div>
 		<div class="nav">
 			<ul>
-				<a href="#"><li class="home"><i class="fa fa-home" aria-hidden="true"></i>Home</li></a>
-				<a href="#"><li class="search"><i class="fa fa-search" aria-hidden="true"></i>Search</li></a>
-				<a href="#"><li class="login"><i class="fa fa-lock" aria-hidden="true"></i>Register | Login</li></a>
+				<a href="index.php?page=home"><li class="home"><i class="fa fa-home" aria-hidden="true"></i>Home</li></a>
+				<a href="index.php?page=search"><li class="search"><i class="fa fa-search" aria-hidden="true"></i>Search</li></a>
+				<a href="index.php?page=auth"><li class="login"><i class="fa fa-lock" aria-hidden="true"></i>Register | Login</li></a>
 			</ul>
 		</div>
 	</div>
 	<div class="container-right">
 		<div class="header">CAB230 Park Finder!</div>
-		<div class="row">
-			<div class="col md shadow">Left Stuff</div>
-			<div class="col md shadow">Right Stuff</div>
-		</div>
-		<div class="row">
-			<div class="col lg shadow">
-				This is a LARGE box...
-				<!--					<div class="test" id="googleMap" style="width:100%; height:400px;"></div>-->
-			</div>
-		</div>
 
-		<br><br><br><br><br><br><br><br><br><br>
+		<!-- Because we can't use a framework, let's make our own page-router or sorts -->
+		<?php
+		if($_GET['page'] == 'home') include './views/home.php';
+		else if($_GET['page'] == 'search') include './views/search.php';
+		else if($_GET['page'] == 'auth') include './views/auth.php';
+		else include './views/home.php'
+		?>
 
-		One br between rows...
-		<div class="row">
-			<div class="col md shadow">Left Stuff</div>
-			<div class="col md shadow">Right Stuff</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col lg shadow">
-				This is a LARGE box...
-				<!--					<div class="test" id="googleMap" style="width:100%; height:400px;"></div>-->
-			</div>
-		</div>
 
-		<br><br><br><br><br><br><br><br><br><br>
 
-		Two br's between rows...
-		<div class="row">
-			<div class="col md shadow">Left Stuff</div>
-			<div class="col md shadow">Right Stuff</div>
-		</div>
-		<br><br>
-		<div class="row">
-			<div class="col lg shadow">
-				This is a LARGE box...
-				<!--					<div class="test" id="googleMap" style="width:100%; height:400px;"></div>-->
-			</div>
-		</div>
 	</div>
 	<div class="footer">Created with &#10084; by Harrison Gee and Tylor Stewart</div>
 </div>

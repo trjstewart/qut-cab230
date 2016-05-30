@@ -27,35 +27,67 @@ body { font-family: "Roboto", sans-serif; min-width:1200px; margin: 0; backgroun
 .nav .login {	border-left: 5px solid #714141; }
 .nav .login:hover {	background-color: #714141; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .row { width: 100%; position: relative; }
 .col { margin: 20px 0px 0px 20px; }
 
-.col.lg { width: 960px;  -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 10px 10px 10px 10px; }
-.col.md { width: 470px; float: left; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 10px 10px 10px 10px; }
-.col.sm { width: 50px; float: left; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 10px 10px 10px 10px; }
+.col.lg { width: 960px;  -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 20px 20px 20px 20px; }
+.col.md { width: 470px; float: left; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 20px 20px 20px 20px; }
+.col.sm { width: 50px; float: left; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 20px 20px 20px 20px; }
 
 .col.shadow { box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); }
 
-.test {  }
 
 
+/* Custom Styles for the Search Page */
+#search input {
+    width: 150px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin: 0 20px 0 0;
+}
 
+#search input:focus {
+    border-bottom: 1px solid #345B34;
+    box-shadow: 0 1px 0 0 #345B34;
+}
 
+#search input#location {
+    width: 35px;
+    text-align: center;
+    margin: 0;
+}
 
+#search select {
+    width: 150px;
+    height: 30px;
+    font-size: 1rem;
+    border: 0;
+    outline: none;
+    margin: 0 20px 0 0;
+    background-color: transparent;
+}
 
+#search button {
+    height: 35px;
+    width: 100px;
+    float: right;
+    color: #FFFFFF;
+    background-color: #37474f;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
 
+#search button:hover {
+    cursor: pointer;
+}
 
+.text-center {text-align: center;}
 
+#loading { visibility: hidden; }
+#results { visibility: hidden; }
