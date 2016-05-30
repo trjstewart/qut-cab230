@@ -8,30 +8,30 @@
 	<script src="./public/js/vanilla.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script>
-		function initialize() {
-			var mapProp = {
-				center:new google.maps.LatLng(-27.4710, 153.0234),
-				zoom:11,
-				mapTypeId:google.maps.MapTypeId.ROADMAP,
-				disableDefaultUI:true
-			};
-			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-			var location = new google.maps.LatLng(-27.4710, 153.0234);
-			var marker = new google.maps.Marker({
-				position: location
-			});
-			marker.setMap(map);
-
-			var infowindow = new google.maps.InfoWindow({
-				content:"Hello World!"
-			});
-
-			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.open(map,marker);
-			});
-		}
-		google.maps.event.addDomListener(window, 'load', initialize);
+//		function initialize() {
+//			var mapProp = {
+//				center:new google.maps.LatLng(-27.4710, 153.0234),
+//				zoom:11,
+//				mapTypeId:google.maps.MapTypeId.ROADMAP,
+//				disableDefaultUI:true
+//			};
+//			var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+//
+//			var location = new google.maps.LatLng(-27.4710, 153.0234);
+//			var marker = new google.maps.Marker({
+//				position: location
+//			});
+//			marker.setMap(map);
+//
+//			var infowindow = new google.maps.InfoWindow({
+//				content:"Hello World!"
+//			});
+//
+//			google.maps.event.addListener(marker, 'click', function() {
+//				infowindow.open(map,marker);
+//			});
+//		}
+//		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 </head>
 <body>
@@ -54,10 +54,9 @@
 		if($_GET['page'] == 'home') include './views/home.php';
 		else if($_GET['page'] == 'search') include './views/search.php';
 		else if($_GET['page'] == 'auth') include './views/auth.php';
+		else if($_GET['page'] == 'park') include './views/park.php';
 		else include './views/home.php'
 		?>
-
-
 
 	</div>
 	<div class="footer">Created with &#10084; by Harrison Gee and Tylor Stewart</div>

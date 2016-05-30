@@ -10,14 +10,14 @@
 				<option value="" disabled selected>Suburb</option>
 			</select>
 			<select id="rating" name="rating">
-				<option value="" disabled selected>Rating</option>
+				<option value="0" disabled selected>Rating</option>
 				<option value="5">5 Stars</option>
 				<option value="4">4 Stars</option>
 				<option value="3">3 Stars</option>
 				<option value="2">2 Stars</option>
 				<option value="1">1 Stars</option>
 			</select>
-			<span>Location within <input id="location" name="location" type="text" maxlength="3" placeholder="000"> km</span>
+			<span>Parks within <input id="location" name="location" type="text" maxlength="3" placeholder="000"> km</span>
 			<button type="submit" onclick="getSearchResults()">Search</button>
 		</form>
 	</div>
@@ -36,7 +36,15 @@
 	<!-- Are there any results to display? Not to start with they're not! -->
 	<div id="results" class="row">
 		<div class="col">
-			<div>Results...</div>
+			<table>
+				<thead>
+					<th>Name</th>
+					<th>Street</th>
+					<th>Suburb</th>
+					<th>Rating</th>
+				</thead>
+				<tbody id="results-body"></tbody>
+			</table>
 		</div>
 	</div>
 </div>
